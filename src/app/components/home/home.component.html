@@ -1,0 +1,87 @@
+<div class="page-wrapper">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <h1 class="title">Anonymous Chat</h1>
+      <p class="subtitle">Join a room and chat with others in real-time</p>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <form (ngSubmit)="handleJoin($event)" class="form">
+
+        <!-- Room ID -->
+        <div class="field">
+          <label for="room" class="label">Room ID</label>
+          <div class="input-row">
+            <input
+              id="room"
+              type="text"
+              class="input"
+              placeholder="Enter room ID..."
+              [value]="roomId()"
+              (input)="setRoomId($any($event.target).value)"
+            />
+            <button type="button" class="btn-outline" (click)="handleRandomRoom()">Random</button>
+          </div>
+          <p class="hint">Create a unique room or use an existing one</p>
+        </div>
+
+        <!-- Username -->
+        <div class="field">
+          <label for="username" class="label">Username</label>
+          <div class="input-row">
+            <input
+              id="username"
+              type="text"
+              class="input"
+              placeholder="Choose a username..."
+              [value]="username()"
+              (input)="setUsername($any($event.target).value)"
+              maxlength="20"
+            />
+            <button type="button" class="btn-outline" (click)="handleRandomUsername()">Random</button>
+          </div>
+          <p class="hint">{{ username().length }}/20 characters</p>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-primary" [disabled]="isDisabled">
+          <span>{{ loading() ? 'Joining...' : 'Join Room' }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <p class="step-text">Enter a room ID to join or create a new room</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <p class="step-text">Choose an anonymous username</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <p class="step-text">Start chatting with others instantly</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <p class="footer-text">All conversations are anonymous and temporary</p>
+
+  </div>
+</div>
